@@ -1,0 +1,90 @@
+<!--<h1>hello</h1>-->
+<!--<br><br><br><br>-->
+<div style="min-height: 20px;"></div>
+
+<div class="row justify-content-md-center">
+
+  <div class="col-md-10" style="color: #ffffff">
+    <div class="col-md-6" style="padding-left: 10px;">
+      <h1 style="font-family: 'Permanent Marker', cursive; font-size: 550%">Social Typing</h1>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-12" style="margin: 5px;">
+        <button style="float: right;" class="btn btn-default" data-toggle="modal" data-target="#myModal">Generate</button>
+        <span style="float: right; margin-right: 10px; font-size: 20px; padding: 3px 0px 3px 0px;">Generate your own room <i class="fas fa-sign-out-alt"></i></span>
+      </div>
+      <div class="col-md-12" style="margin: 5px;">
+        <button style="float: right;" class="btn btn-default" ngclipboard data-clipboard-text="{{ shareLink }}"><i class="fas fa-share-square"></i></button>
+        <span style="float: right; margin-right: 10px; font-size: 20px; padding: 3px 0px 3px 0px;">Copy Url <i class="fas fa-sign-out-alt"></i></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <center><label for="myname"><i class="fas fa-user" style="font-size: 50px; color: {{ myColour }};"></i></label></center>
+      <input type="text" class="form-control" id="myname" placeholder="{{myName}}" ng-model="myName" ng-keyup="$event.keyCode == 13 ? submitName() : null">
+    </div>
+  </div>
+
+</div>
+
+<div class="row justify-content-md-center">
+
+  <div class="col-md-10" style="opacity: 0.85; color: #000000">
+    <ui-codemirror ng-model="text" ui-codemirror="{ onLoad : codemirrorLoaded }" ui-codemirror-opts="editorOptions" ui-refresh="isSomething" ng-keyup="showInfo()" ng-keydown="sendCursor()">
+    </ui-codemirror>
+  </div>
+
+  <div class="col-md-2">
+    <!-- <p>Select a theme: <select ng-model="selectedTheme" ng-options="x for x in themes" ng-change="themeSelected()"></select></p> -->
+    <br>
+    <div>
+      <center><i class="fas fa-handshake" style="font-size: 50px; color: #ffffff;"></i></label></center>
+    </div>
+    <br>
+    <div style="background-color: #ffffff; padding: 5px; overflow-y: scroll; overflow-x: scroll; height: 500px;">
+      <p ng-repeat="data in anotherName" style="padding: 5px;">
+        <i class="fas fa-user" style="font-size: 50px; color: {{ data.colour }};"></i> <span style="color: {{data.colour}}; font-size: 17px; padding-left:20%">{{data.name}}</span>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<br><br>
+<div class="row justify-content-md-center" style="color: #ffffff;">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <p><strong>Note : </strong><em>Generate your room and share url with friends to enjoy the <strong>social typing</strong>.</em></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Generate Room</h4>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="newroomid">Room Name:</label>
+            <input type="text" class="form-control" id="newroomid" ng-model="newroomid">
+            <br>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="goToRoom()">Go To Room</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="TaskManager">
+  <head>
+    <style media="screen">
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        -webkit-filter: blur(15px);
+        -moz-filter: blur(15px);
+        -o-filter: blur(15px);
+        -ms-filter: blur(15px);
+        filter: blur(15px);
+      }
+      #content {
+        background-color: #efefef;
+        width: 100%;
+      }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/3024-day.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/3024-night.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/abcdef.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/ambiance.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/base16-dark.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/bespin.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/base16-light.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/blackboard.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/cobalt.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/colorforth.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/dracula.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/duotone-dark.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/duotone-light.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/eclipse.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/elegant.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/erlang-dark.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/gruvbox-dark.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/hopscotch.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/icecoder.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/isotope.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/lesser-dark.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/liquibyte.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/lucario.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/material.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/mbo.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/mdn-like.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/midnight.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/monokai.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/neat.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/neo.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/night.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/oceanic-next.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/panda-syntax.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/paraiso-dark.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/paraiso-light.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/pastel-on-dark.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/railscasts.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/rubyblue.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/seti.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/shadowfox.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/solarized.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/the-matrix.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/tomorrow-night-bright.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/tomorrow-night-eighties.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/ttcn.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/twilight.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/vibrant-ink.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/xq-dark.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/xq-light.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/yeti.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/idea.css">
+    <link rel="stylesheet" href="/node_modules/codemirror/theme/zenburn.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/lib/codemirror.css">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/node_modules/codemirror/lib/codemirror.js"></script>
+    <script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/node_modules/angular-route/angular-route.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>-->
+    <script type="text/javascript" src="/node_modules/angular-ui-codemirror/src/ui-codemirror.js"></script>
+    <!--<script type="text/javascript" src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>-->
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
+    <script src="https://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
+    <title>Social Typing</title>
+    <base href="/">
+  </head>
+  <body background="/partials/image.jpg">
+    <!-- <video autoplay muted loop id="myVideo">
+      <source src="/partials/video.mp4" type="video/mp4">
+    </video> -->
+    <div class="" ng-modal="">
+
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-12" ng-view="" id="ng-view"></div>
+    </div>
+
+  </body>
+  <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
+  <script src="/node_modules/ngclipboard/dist/ngclipboard.min.js"></script>
+  <script type="text/javascript" src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script type="text/javascript" src="/app/app.js"></script>
+
+</html>
