@@ -21,4 +21,3 @@ Step 4 - Run the server(nodemon start || npm start)
 
 Code is also deployed, Test it at
 
-https://ankitmalhotra.xyz/#!/
